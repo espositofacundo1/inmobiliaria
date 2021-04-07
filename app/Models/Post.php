@@ -23,6 +23,9 @@ class Post extends Model
     public function team(){
         return $this->belongsToMany(team::class);
     }
+    public function alquileres(){
+        return $this->hasMany(Alquileres::class);
+    }
     
     
 }

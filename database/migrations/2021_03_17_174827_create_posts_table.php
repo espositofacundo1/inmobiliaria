@@ -25,7 +25,14 @@ class CreatePostsTable extends Migration
             $table->string('localidad');
             $table->string('provincia');
             $table->string('codigo_postal');
-            $table->date('fecha_estimada_de_firma');
+            $table->string('vigencia_de_contrato');
+            $table->string('fecha_de_vencimiento');
+            $table->string('cantidad_de_meses');
+       
+            $table->string('realizar');
+            $table->string('autorizacion');
+
+            $table->string('fecha_estimada_de_firma');
             
            
       

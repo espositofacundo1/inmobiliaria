@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class APagarALaFirma extends Migration
+class CreateArchivosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,9 @@ class APagarALaFirma extends Migration
      */
     public function up()
     {
-        Schema::create('a_pagar_a_la_firma', function (Blueprint $table) {
-
-
+        Schema::create('archivos', function (Blueprint $table) {
             $table->id();
-            $table->double('monto',15,2)->default(0);
-            $table->double('depositoenpesos',15,2)->default(0);
-            $table->double('depositoenusd',15,2)->default(0);
-            $table->double('informes',15,2)->default(0);
-            $table->timestamps();
-
-
-
+            $table->text('archivo');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('team_id');
             $table->unsignedBigInteger('post_id');
@@ -35,8 +26,7 @@ class APagarALaFirma extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('team_id')->references('id')->on('teams');
             $table->foreign('post_id')->references('id')->on('posts');
-
-
+            $table->timestamps();
         });
     }
 
@@ -47,6 +37,6 @@ class APagarALaFirma extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('a_pagar_a_la_firma');
+        Schema::dropIfExists('archivos');
     }
 }

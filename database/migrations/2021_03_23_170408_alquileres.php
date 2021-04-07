@@ -15,23 +15,17 @@ class Alquileres extends Migration
     {
         Schema::create('alquileres', function (Blueprint $table) {
             $table->id();
-            $table->double('alquiler',15,2)->default(0);
-            $table->double('facturacion',15,2)->default(0);
-            $table->integer('meses')->default(0);
-            $table->timestamps();
+            
+            
+            $table->integer('post_id');
 
-
-
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('team_id');
-            $table->unsignedBigInteger('post_id');
            
-
-
-            /* user_id hace referencia al id de la tabla users */
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('team_id')->references('id')->on('teams');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->double('alquiler',15,2)->nullable();
+            $table->double('facturacion',15,2)->nullable();
+            $table->integer('meses')->nullable();
+        
+            $table->timestamps();
+         
 
 
         });

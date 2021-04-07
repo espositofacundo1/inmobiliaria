@@ -39,6 +39,11 @@ class PostFactory extends Factory
             'provincia' => $this->faker->word(10),
             'codigo_postal' => $this->faker->word(10),
             'fecha_estimada_de_firma' => $this->faker->date(),
+            'vigencia_de_contrato' => $this->faker->date(),
+            'fecha_de_vencimiento' => $this->faker->date(),
+            'cantidad_de_meses' => $this->faker->word(10),
+            'realizar' => $this->faker->word(10),
+            'autorizacion' => $this->faker->word(10),
 
             
             
