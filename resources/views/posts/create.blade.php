@@ -34,12 +34,21 @@
 
                   <div class="col-span-6 sm:col-span-3">
                     <label for="fecha_estimada_de_firma" class="block text-sm font-medium text-gray-700">Fecha estimativa de firma</label>
-                    <input type="date" value="{{$fecha_estimada_de_firma}}" name="fecha_estimada_de_firma" id="fecha_estimada_de_firma" autocomplete="date" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
+                    <input type="date" value="{{$fecha_estimada_de_firma}}" name="fecha_estimada_de_firma" id="fecha_estimada_de_firma" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
                    
                     @error('fecha_estimada_de_firma')
                       <small>*{{$message}}</small>   
                     @enderror  
                     </div>
+
+                    <div class="col-span-6 sm:col-span-3">
+                      <label for="vigencia_de_contrato" class="block text-sm font-medium text-gray-700">Vigencia de contrato</label>
+                      <input type="date" value="{{$vigencia_de_contrato}}" name="vigencia_de_contrato" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
+                     
+                      @error('fecha_estimada_de_firma')
+                        <small>*{{$message}}</small>   
+                      @enderror  
+                      </div>
                 </div>               
               </div>
           </div>
@@ -99,8 +108,8 @@
              <div class="grid grid-cols-6 gap-6">          
 
               <div class="col-span-6 sm:col-span-3">
-                <label for="vigencia_de_contrato" class="block text-sm font-medium text-gray-700">Vigencia de contrato</label>
-                <input type="text" value="{{$vigencia_de_contrato}}" disabled class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
+                <label for="vigencia_de_contrato_fin" class="block text-sm font-medium text-gray-700">Fin de vigencia de contrato</label>
+                <input type="text" value="{{$vigencia_de_contrato_fin}}" disabled class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
               
                 </div>
 
@@ -197,8 +206,9 @@
                 
                 <input type="hidden" value="1" name="category_id">
                 <input type="hidden"  value="{{$fecha_estimada_de_firma}}" name="fecha_estimada_de_firma">
-                <input type="hidden"  value="{{$cantidad_de_meses}}" name="cantidad_de_meses">
                 <input type="hidden"  value="{{$vigencia_de_contrato}}" name="vigencia_de_contrato">
+                <input type="hidden"  value="{{$cantidad_de_meses}}" name="cantidad_de_meses">
+              
 
 
                
@@ -255,7 +265,7 @@
              
               <?php if($i>12){break;}?>                     
               <tr>
-                <td class="border border-gray-800 bg-gray-300" ><input type="number" name="{{"meses".$i}}" class="w-12 h-8 bg-gray-300"></td>
+                <td class="border border-gray-800 bg-gray-300" ><input type="number" name="{{"meses".$i}}" class="w-16 h-8 bg-gray-300"></td>
                 <td class="border border-gray-800"  ><input name="{{"alquiler".$i}}" type="number" class="w-36 h-8 text-center" ></td>
                 <td class="border border-gray-800"  ><input  name="{{"facturacion".$i}}" type="number" class="w-36 h-8 text-center"></td>
               </tr>               
@@ -282,7 +292,7 @@
              
               <?php if($i>24){break;}?>                     
               <tr>
-                <td class="border border-gray-800 bg-gray-300" ><input type="number" name="{{"meses".$i}}" class="w-12 h-8 bg-gray-300"></td>
+                <td class="border border-gray-800 bg-gray-300" ><input type="number" name="{{"meses".$i}}" class="w-16 h-8 bg-gray-300"></td>
                 <td class="border border-gray-800"  ><input name="{{"alquiler".$i}}" type="number" class="w-36 h-8 text-center" ></td>
                 <td class="border border-gray-800"  ><input  name="{{"facturacion".$i}}" type="number" class="w-36 h-8 text-center"></td>
               </tr>               
@@ -311,7 +321,7 @@
              
               <?php if($i>36){break;}?>                     
               <tr>
-                <td class="border border-gray-800 bg-gray-300" ><input type="number" name="{{"meses".$i}}" class="w-12 h-8 bg-gray-300"></td>
+                <td class="border border-gray-800 bg-gray-300" ><input type="number" name="{{"meses".$i}}" class="w-16 h-8 bg-gray-300"></td>
                 <td class="border border-gray-800"  ><input name="{{"alquiler".$i}}" type="number" class="w-36 h-8 text-center" ></td>
                 <td class="border border-gray-800"  ><input  name="{{"facturacion".$i}}" type="number" class="w-36 h-8 text-center"></td>
               </tr>               

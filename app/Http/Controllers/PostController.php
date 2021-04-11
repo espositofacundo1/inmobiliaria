@@ -22,7 +22,7 @@ class PostController extends Controller
 
     use WithPagination;
 
-    const PAGINACION=15;
+    const PAGINACION=10;
 
 
     public function index(Request $request){
@@ -32,7 +32,8 @@ class PostController extends Controller
         
                
         $post= Post::where('team_id','Like',Auth::user()->currentTeam->id)
-                    ->where('direccion','LIKE','%'.$texto.'%')                                     
+                    ->where('direccion','LIKE','%'.$texto.'%')
+                    // ->where('direccion','LIKE','%'.$texto.'%')   
                     ->orderBy('updated_at','desc')
                     ->paginate($this::PAGINACION)             
                                  
@@ -51,11 +52,13 @@ class PostController extends Controller
         $actualizado= Carbon::createFromDate($post->updated_at->toDateTimeString())->format('H:i , d / m / Y');
 
         $fecha_estimada_de_firma= Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
+        $vigencia_de_contrato= Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
+        
        
         
 
         
-        return view('posts.show',compact('post','creado','actualizado','fecha_estimada_de_firma'));
+        return view('posts.show',compact('post','creado','actualizado','fecha_estimada_de_firma','vigencia_de_contrato'));
     }
 
     public function category(Category $category){
@@ -82,13 +85,17 @@ class PostController extends Controller
         {$fecha_estimada_de_firma=$_GET['fecha_estimada_de_firma'];}
         else{ $fecha_estimada_de_firma=0;}
 
-        $vigencia_de_contrato = Carbon::createFromDate($fecha_estimada_de_firma)->add($cantidad_de_meses,'month')->format('d / m / Y');
+        if (isset($_GET['vigencia_de_contrato']))
+        {$vigencia_de_contrato=$_GET['vigencia_de_contrato'];}
+        else{ $vigencia_de_contrato=0;}
+
+        $vigencia_de_contrato_fin = Carbon::createFromDate($vigencia_de_contrato)->add($cantidad_de_meses,'month')->format('d / m / Y');
       
         $siete_dias_mas = Carbon::now()->add(7, 'day')->format('d / m / Y');
 
 
       
-        return view('posts.create',compact('siete_dias_mas','cantidad_de_meses','vigencia_de_contrato','fecha_estimada_de_firma'));
+        return view('posts.create',compact('siete_dias_mas','cantidad_de_meses','vigencia_de_contrato_fin','fecha_estimada_de_firma','vigencia_de_contrato'));
     }
 
     public function store(Request $request){
@@ -136,23 +143,7 @@ class PostController extends Controller
        $cantidad_de_meses=$request->cantidad_de_meses;
         
 
-        for ($i=1; $i <= $cantidad_de_meses ; $i++) {            
-
-            $a="alquiler".$i;
-            $b="facturacion".$i;
-            $c="meses".$i;
-            $d="instancia".$i;
-
-
-            $d= new Alquilere();
-
-            $d->alquiler = $request->$a;
-            $d->facturacion= $request->$b;
-            $d->meses= $request->$c; 
-            $d->post_id = $post->id;
-
-            $d->save();
-        }
+        
        
 
 
@@ -201,6 +192,31 @@ class PostController extends Controller
        
 
         $a_pagar_a_la_firma->save();
+
+
+        for ($i=1; $i <= $cantidad_de_meses ; $i++) {            
+            
+            $a="alquiler".$i;
+            $b="facturacion".$i;
+            $c="meses".$i;
+            $d="instancia".$i;
+
+            
+
+
+            $d= new Alquilere();
+            
+
+            $d->alquiler = $request->$a;
+            $d->facturacion= $request->$b;
+            $d->meses= $request->$c; 
+            $d->post_id = $post->id;
+
+
+            $d->save();
+          
+
+        }
 
 
 
@@ -262,9 +278,13 @@ class PostController extends Controller
 
     public function detalle_propuesta(Post $post){
 
-        $fecha_estimada_de_firma= Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
+        $menos_un_dia=Carbon::createFromDate($post->vigencia_de_contrato)->add(-1,'day');
+        $fin_de_vigencia=Carbon::createFromDate($menos_un_dia->toDateTimeString())->add($post->cantidad_de_meses,'month')->format('d/m/y');
 
-        return view('posts.detalle_propuesta',compact('post','fecha_estimada_de_firma'));
+        $fecha_estimada_de_firma= Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
+        $vigencia_de_contrato= Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
+
+        return view('posts.detalle_propuesta',compact('post','fecha_estimada_de_firma','vigencia_de_contrato','fin_de_vigencia'));
 
     }
 

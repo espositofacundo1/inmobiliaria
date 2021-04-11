@@ -33,6 +33,9 @@
                       Detalle Propuesta locacion
                     </h3>          
                    </div>
+                   <div class="grid justify-items-end">
+                  Fecha :   {{$fecha_estimada_de_firma}}
+                   </div>
                  </div>
                   
                  
@@ -74,10 +77,10 @@
                       </div>
                       
           
-                      <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                      <div class="bg-gray-50 px-4 py-5 ">
                        
                         
-                        <dd class="mt-1 text-sm text-gray-900">
+                        <dd class="mt-1 text-sm text-gray-900 ">
                           @include('posts.alquileresvista')
                         </dd>
                     

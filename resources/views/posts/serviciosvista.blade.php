@@ -26,7 +26,7 @@ function checkear($a){
     <table class="pr-3">
     <thead>
       <tr class="bg-gray-500 ">
-        <th class="border border-gray-800 w-36">Servicios</th>
+        <th class="border border-gray-800 w-40">Servicios</th>
         <th class="border border-gray-800 w-36">El locatario paga:</th>
         <th class="border border-gray-800 w-10">Solicita</th>                     
       </tr>

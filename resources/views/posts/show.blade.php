@@ -74,7 +74,7 @@ use App\Models\User;
                 Fechas:
               </dt>
               <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              Fecha estimada de firma: {{$fecha_estimada_de_firma}} | Duracion: {{$post->cantidad_de_meses}} meses | vigencia de contrato: {{$post->vigencia_de_contrato}}
+              Fecha estimada de firma: {{$fecha_estimada_de_firma}} | Duracion: {{$post->cantidad_de_meses}} meses | vigencia de contrato: {{$vigencia_de_contrato}}
               </dd>
             </div>
             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -95,38 +95,90 @@ use App\Models\User;
                 {{$post->autorizacion}}
               </dd>
             </div>
+          </dl>
+        </div>
+      </div>
 
-            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">
-                Alquiler
-              </dt>
-              <div  style="max-height:350px; width:700px; overflow: scroll;">
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                @include('posts.alquileresvista')
-              </dd>
-              </div>
+
+
+
+
+
+
+<br>
+
+
+
+      <div class="bg-white shadow overflow-hidden sm:rounded-lg ">
+        <div class="px-2 py-3 sm:px-6 grid grid-cols-2 gap-4 ">
+      
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+            Tablas de Alquiler, servicios y pagos. 
+          </h3>
+          <br> <br>
+         
+        </div>
+
+        
+        <div class="border-t border-gray-200">
+          <dl>
+
+            <div class=" to-gray-900 bg-gray-100 py-5">
+        
+              @include('posts.alquileresvista')
+
+
               
-            </div>
+  
+          </div>
 
-            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-              <dt class="text-sm font-medium text-gray-500">
-                Detalle de pagos a la firma y Servicios 
-              </dt>
-              <div>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                @include('posts.serviciosvista')
-              </dd>
-              </div>
-              <div>
-              <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                @include('posts.a_pagar_a_la_firma_vista')
-              </dd>
-              </div>
-            </div>
+        
+              
+            
+
+          </div>
             
           </dl>
         </div>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+           
+
+            
+            
+       
 
       
         
