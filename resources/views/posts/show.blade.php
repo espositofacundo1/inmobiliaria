@@ -1,10 +1,9 @@
 <?php use App\Models\Category; 
 use App\Models\User;
 
-
-
 ?>
 <x-app-layout>
+
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-200 ">
       <br>
@@ -24,6 +23,13 @@ use App\Models\User;
           <div class="pt-3">
             <a href="{{route('posts.detalle_propuesta',$post)}}"  >
               <button class="bg-blue-800 duration-500 ease-in-out hover:bg-blue-900 rounded-md w-24 px-4 py-1 mr-1 text-blue-200 ">Imprimir
+              </button>
+            </a>
+            </div>
+          </div>
+          <div class="pt-3">
+            <a href="{{route('posts.createreserva',$post)}}"  >
+              <button class="bg-blue-800 duration-500 ease-in-out hover:bg-blue-900 rounded-md w-24 px-4 py-1 mr-1 text-blue-200 ">Reserva
               </button>
             </a>
             </div>
@@ -101,10 +107,6 @@ use App\Models\User;
 
 
 
-
-
-
-
 <br>
 
 
@@ -128,12 +130,8 @@ use App\Models\User;
               @include('posts.alquileresvista')
 
 
-              
-  
           </div>
-
-        
-              
+     
             
 
           </div>
@@ -145,42 +143,6 @@ use App\Models\User;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
-
-
-
-
-           
-
-            
-            
-       
-
-      
         
       <div class="py-2 grid justify-items-end">
         <a href="{{route('posts.index')}}">

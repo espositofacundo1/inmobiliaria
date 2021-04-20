@@ -14,6 +14,7 @@ use livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 
 
@@ -22,98 +23,109 @@ class PostController extends Controller
 
     use WithPagination;
 
-    const PAGINACION=10;
+    const PAGINACION = 10;
 
 
-    public function index(Request $request){
+    public function index(Request $request)
+    {
 
 
-        $texto=trim($request->get('texto'));
-        
-               
-        $post= Post::where('team_id','Like',Auth::user()->currentTeam->id)
-                    ->where('direccion','LIKE','%'.$texto.'%')
-                    // ->where('direccion','LIKE','%'.$texto.'%')   
-                    ->orderBy('updated_at','desc')
-                    ->paginate($this::PAGINACION)             
-                                 
-        ;   
-        
+        $texto = trim($request->get('texto'));
+        $texto_rubro = trim($request->get('texto_rubro'));
+        $texto_vigencia_de_contrato = trim($request->get('texto_vigencia_de_contrato'));
 
-        return view('posts.index', compact('post','texto'));
+
+        $post = Post::where('team_id', 'Like', Auth::user()->currentTeam->id)
+            ->where('direccion', 'LIKE', '%' . $texto . '%')
+            ->where('rubro', 'LIKE', '%' . $texto_rubro . '%')
+            ->where('vigencia_de_contrato', 'LIKE', '%' . $texto_vigencia_de_contrato . '%')
+            ->orderBy('updated_at', 'desc')
+            ->paginate($this::PAGINACION);
+
+
+
+
+        return view('posts.index', compact('post', 'texto', 'texto_rubro', 'texto_vigencia_de_contrato'));
     }
 
-    public function show(Post $post){
+    public function show(Post $post)
+    {
 
-
-
+        $respuesta1 = Http::get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
+        $valor_dolar=$respuesta1->json();
 
         $creado = Carbon::createFromDate($post->created_at->toDateTimeString())->format('H:i , d / m / Y');
-        $actualizado= Carbon::createFromDate($post->updated_at->toDateTimeString())->format('H:i , d / m / Y');
+        $actualizado = Carbon::createFromDate($post->updated_at->toDateTimeString())->format('H:i , d / m / Y');
 
-        $fecha_estimada_de_firma= Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
-        $vigencia_de_contrato= Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
-        
-       
-        
+        $fecha_estimada_de_firma = Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
+        $vigencia_de_contrato = Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
 
-        
-        return view('posts.show',compact('post','creado','actualizado','fecha_estimada_de_firma','vigencia_de_contrato'));
+
+        return view('posts.show', compact('post', 'creado', 'actualizado', 'fecha_estimada_de_firma', 'vigencia_de_contrato','valor_dolar'));
     }
 
-    public function category(Category $category){
-        $posts = Post::where('category_id',$category->id)
-                       ->latest('id')
-                       ->paginate(6);
+    public function category(Category $category)
+    {
+        $posts = Post::where('category_id', $category->id)
+            ->latest('id')
+            ->paginate(6);
 
-        return view('posts.category',compact('posts','category'));
+        return view('posts.category', compact('posts', 'category'));
     }
 
 
-    public function create(Request $request){
+    public function create(Request $request)
+    {
 
 
-        $cantidad_de_meses=$request->get('cantidad_de_meses');
+        $cantidad_de_meses = $request->get('cantidad_de_meses');
 
-        if (isset($_GET['cantidad_de_meses']))
-        { $cantidad_de_meses=$_GET['cantidad_de_meses'];}
-        else{ $cantidad_de_meses=0;}
+        if (isset($_GET['cantidad_de_meses'])) {
+            $cantidad_de_meses = $_GET['cantidad_de_meses'];
+        } else {
+            $cantidad_de_meses = 0;
+        }
 
-        $fecha_estimada_de_firma=$request->get('fecha_estimada_de_firma');
+        $fecha_estimada_de_firma = $request->get('fecha_estimada_de_firma');
 
-        if (isset($_GET['fecha_estimada_de_firma']))
-        {$fecha_estimada_de_firma=$_GET['fecha_estimada_de_firma'];}
-        else{ $fecha_estimada_de_firma=0;}
+        if (isset($_GET['fecha_estimada_de_firma'])) {
+            $fecha_estimada_de_firma = $_GET['fecha_estimada_de_firma'];
+        } else {
+            $fecha_estimada_de_firma = 0;
+        }
 
-        if (isset($_GET['vigencia_de_contrato']))
-        {$vigencia_de_contrato=$_GET['vigencia_de_contrato'];}
-        else{ $vigencia_de_contrato=0;}
+        if (isset($_GET['vigencia_de_contrato'])) {
+            $vigencia_de_contrato = $_GET['vigencia_de_contrato'];
+        } else {
+            $vigencia_de_contrato = 0;
+        }
 
-        $vigencia_de_contrato_fin = Carbon::createFromDate($vigencia_de_contrato)->add($cantidad_de_meses,'month')->format('d / m / Y');
-      
+        $vigencia_de_contrato_fin = Carbon::createFromDate($vigencia_de_contrato)->add($cantidad_de_meses, 'month')->format('d / m / Y');
+
         $siete_dias_mas = Carbon::now()->add(7, 'day')->format('d / m / Y');
 
 
-      
-        return view('posts.create',compact('siete_dias_mas','cantidad_de_meses','vigencia_de_contrato_fin','fecha_estimada_de_firma','vigencia_de_contrato'));
+
+        return view('posts.create', compact('siete_dias_mas', 'cantidad_de_meses', 'vigencia_de_contrato_fin', 'fecha_estimada_de_firma', 'vigencia_de_contrato'));
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $request->validate([
 
-        'escalonado'=> 'required',
-        'condicionfiscal'=> 'required',
-        'rubro'=> 'required',
-        'direccion'=> 'required',
-        'localidad'=> 'required',
-        'provincia'=> 'required',
-        'codigo_postal'=> 'required',
-        'fecha_estimada_de_firma'=> 'required',
+            'escalonado' => 'required',
+            'condicionfiscal' => 'required',
+            'rubro' => 'required',
+            'direccion' => 'required',
+            'localidad' => 'required',
+            'provincia' => 'required',
+            'codigo_postal' => 'required',
+            'fecha_estimada_de_firma' => 'required',
 
         ]);
 
-        $post= new Post();
+        $post = new Post();
 
         $post->escalonado = $request->escalonado;
         $post->condicionfiscal = $request->condicionfiscal;
@@ -121,7 +133,7 @@ class PostController extends Controller
         $post->direccion = $request->direccion;
         $post->localidad = $request->localidad;
         $post->provincia = $request->provincia;
-        $post->codigo_postal = $request->codigo_postal;       
+        $post->codigo_postal = $request->codigo_postal;
         $post->fecha_estimada_de_firma = $request->fecha_estimada_de_firma;
         $post->vigencia_de_contrato = $request->vigencia_de_contrato;
         $post->fecha_de_vencimiento = $request->fecha_de_vencimiento;
@@ -130,25 +142,25 @@ class PostController extends Controller
         $post->autorizacion = $request->autorizacion;
 
 
-        
 
-        
-        $post->user_id =Auth::user()->id;
-        $post->team_id=Auth::user()->currentTeam->id;
-        $post->category_id = $request->category_id; 
-      
+
+
+        $post->user_id = Auth::user()->id;
+        $post->team_id = Auth::user()->currentTeam->id;
+        $post->category_id = $request->category_id;
+
         $post->save();
 
-        
-       $cantidad_de_meses=$request->cantidad_de_meses;
-        
 
-        
-       
+        $cantidad_de_meses = $request->cantidad_de_meses;
 
 
-        $servicio= new Servicio();
-        
+
+
+
+
+        $servicio = new Servicio();
+
 
         $servicio->osse = $request->osse;
         $servicio->osse_solicitar = $request->osse_solicitar;
@@ -181,7 +193,7 @@ class PostController extends Controller
         $servicio->save();
 
 
-        $a_pagar_a_la_firma= new A_pagar_a_la_firma();
+        $a_pagar_a_la_firma = new A_pagar_a_la_firma();
 
         $a_pagar_a_la_firma->adelanto = $request->adelanto;
         $a_pagar_a_la_firma->deposito_en_pesos = $request->deposito_en_pesos;
@@ -189,63 +201,65 @@ class PostController extends Controller
         $a_pagar_a_la_firma->informes = $request->informes;
 
         $a_pagar_a_la_firma->post_id = $post->id;
-       
+
 
         $a_pagar_a_la_firma->save();
 
 
-        for ($i=1; $i <= $cantidad_de_meses ; $i++) {            
-            
-            $a="alquiler".$i;
-            $b="facturacion".$i;
-            $c="meses".$i;
-            $d="instancia".$i;
+        for ($i = 1; $i <= $cantidad_de_meses; $i++) {
 
-            
+            $a = "alquiler" . $i;
+            $b = "facturacion" . $i;
+            $c = "meses" . $i;
+            $d = "instancia" . $i;
 
 
-            $d= new Alquilere();
-            
+
+
+            $d = new Alquilere();
+
 
             $d->alquiler = $request->$a;
-            $d->facturacion= $request->$b;
-            $d->meses= $request->$c; 
+            $d->facturacion = $request->$b;
+            $d->meses = $request->$c;
             $d->post_id = $post->id;
 
 
-            $d->save();
-          
+            if ($d->meses == null) {
+                break;
+            }
 
+            $d->save();
         }
 
 
 
-        return redirect()->route('posts.show',$post->id);
-        
+        return redirect()->route('posts.show', $post->id);
     }
 
 
-    public function edit(Post $post){
+    public function edit(Post $post)
+    {
 
-        return view('posts.edit',compact('post'));
-
+        return view('posts.edit', compact('post'));
     }
 
-    public function update(Request $request,Post $post){
+    public function update(Request $request, Post $post)
+    {
 
 
         $request->validate([
 
-            'escalonado'=> 'required',
-            'condicionfiscal'=> 'required',
-            'rubro'=> 'required',
-            'direccion'=> 'required',
-            'localidad'=> 'required',
-            'provincia'=> 'required',
-            'codigo_postal'=> 'required',
-            'fecha_estimada_de_firma'=> 'required',
-    
-            ]);
+            'escalonado' => 'required',
+            'condicionfiscal' => 'required',
+            'rubro' => 'required',
+            'direccion' => 'required',
+            'localidad' => 'required',
+            'provincia' => 'required',
+            'codigo_postal' => 'required',
+            'fecha_estimada_de_firma' => 'required',
+
+        ]);
 
         $post->escalonado = $request->escalonado;
         $post->condicionfiscal = $request->condicionfiscal;
@@ -253,39 +267,57 @@ class PostController extends Controller
         $post->direccion = $request->direccion;
         $post->localidad = $request->localidad;
         $post->provincia = $request->provincia;
-        $post->codigo_postal = $request->codigo_postal;      
+        $post->codigo_postal = $request->codigo_postal;
         $post->fecha_estimada_de_firma = $request->fecha_estimada_de_firma;
 
 
 
-        $post->user_id =Auth::user()->id;
-        $post->team_id=Auth::user()->currentTeam->id;
-        $post->category_id = $request->category_id; 
+        $post->user_id = Auth::user()->id;
+        $post->team_id = Auth::user()->currentTeam->id;
+        $post->category_id = $request->category_id;
 
         $post->save();
 
 
-        return view('posts.show',compact('post'));
-
+        return view('posts.show', compact('post'));
     }
 
-    public function destroy(Post $post){
+    public function destroy(Post $post)
+    {
 
         $post->delete();
         return redirect()->route('posts.index');
     }
 
 
-    public function detalle_propuesta(Post $post){
+    public function detalle_propuesta(Post $post)
+    {
 
-        $menos_un_dia=Carbon::createFromDate($post->vigencia_de_contrato)->add(-1,'day');
-        $fin_de_vigencia=Carbon::createFromDate($menos_un_dia->toDateTimeString())->add($post->cantidad_de_meses,'month')->format('d/m/y');
+        $menos_un_dia = Carbon::createFromDate($post->vigencia_de_contrato)->add(-1, 'day');
+        $fin_de_vigencia = Carbon::createFromDate($menos_un_dia->toDateTimeString())->add($post->cantidad_de_meses, 'month')->format('d/m/y');
 
-        $fecha_estimada_de_firma= Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
-        $vigencia_de_contrato= Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
+        $fecha_estimada_de_firma = Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
+        $vigencia_de_contrato = Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
 
-        return view('posts.detalle_propuesta',compact('post','fecha_estimada_de_firma','vigencia_de_contrato','fin_de_vigencia'));
-
+        return view('posts.detalle_propuesta', compact('post', 'fecha_estimada_de_firma', 'vigencia_de_contrato', 'fin_de_vigencia'));
     }
+
+
+    public function createreserva(Post $post)
+    {
+
+
+        $a_pagar_a_la_firma= A_pagar_a_la_firma::where('post_id', '=', $post->id)->get();
+        $a_pagar_a_la_firma=$a_pagar_a_la_firma[0];
+
+        return view('posts.createreserva', compact('post','a_pagar_a_la_firma'));
+    }
+
+
+
+
+
+
+
 
 }

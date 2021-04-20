@@ -21,6 +21,18 @@ for ($i=1; $i <=$a_pagar_a_la_firma->adelanto ; $i++) {
 
 $iva_adelanto=$sumatoria_facturacion_adelanto*0.21;
 
+$suma_total_facturacion=array_sum ($facturacion);
+$suma_total_iva=array_sum ($iva);
+
+
+$sellados=($suma_total_facturacion+$suma_total_iva)*0.012/2;
+
+
+
+$honorarios=$alquiler[1]*$cantidad_de_meses*0.04;
+$honorarios_iva=$honorarios*0.21;
+
+
 
 ?>
 
@@ -62,7 +74,7 @@ $iva_adelanto=$sumatoria_facturacion_adelanto*0.21;
       </tr>
       <tr>
         <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Sellados</div></td>
-        <td class="border border-gray-800"><div class="text-center"></div></td>
+        <td class="border border-gray-800"><div class="text-center">{{$sellados}}</div></td>
       </tr>
       <tr>
         <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Informes</div></td>
@@ -70,15 +82,17 @@ $iva_adelanto=$sumatoria_facturacion_adelanto*0.21;
       </tr>
       <tr>
         <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Honorarios</div></td>
-        <td class="border border-gray-800"><div class="text-center"></div></td>
+        <td class="border border-gray-800"><div class="text-center">{{$honorarios}}</div></td>
       </tr>
       <tr>
         <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Iva Honorarios</div></td>
-        <td class="border border-gray-800"><div class="text-center"></div></td>
+        <td class="border border-gray-800"><div class="text-center">{{$honorarios_iva}}</div></td>
       </tr>
     
 
     </tbody>
     </table>
+
+    USD al dia de hoy:{{$valor_dolar[1]['casa']['venta']}}
 
   </div>
