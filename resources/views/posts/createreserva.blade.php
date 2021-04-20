@@ -53,10 +53,10 @@
                                             <label class="col-span-2"
                                                 class="block text-sm font-medium text-gray-700 "><strong>Metodo de pago
                                                     (Pesos):</strong> </label>
-                                            <input type="text"
+                                            <input type="text" name="mpp_efectivo"
                                                 class="focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-11/12 shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-500"
                                                 placeholder="Efectivo">
-                                            <input type="text"
+                                            <input type="text" name="mpp_transferencia"
                                                 class="focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-11/12 shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-500"
                                                 placeholder="Trasferencia">
                                         </div>
@@ -75,23 +75,15 @@
                                             <label class="col-span-2"
                                                 class="block text-sm font-medium text-gray-700 "><strong>Metodo de
                                                     pago (USD):</strong> </label>
-                                            <input type="text"
+                                            <input type="text" name="mpd_efectivo"
                                                 class="focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-11/12 shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-500"
                                                 placeholder="Efectivo">
-                                            <input type="text"
+                                            <input type="text" name="mpd_transferencia"
                                                 class="focus:ring-indigo-500 focus:border-indigo-500 block h-8 w-11/12 shadow-sm sm:text-sm border-gray-300 rounded-md placeholder-gray-500"
                                                 placeholder="Trasferencia">
                                         </div>
 
                                     </div>
-
-
-
-
-
-
-
-
 
                                     <div class="col-span-6 sm:col-span-3">
 
@@ -128,12 +120,12 @@
                                     
                                           <tr>
                                             <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Fiador</div></td>
-                                            <td class="border border-gray-800"><div class="text-center"><input type="text" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
+                                            <td class="border border-gray-800"><div class="text-center"><input type="text" name="g1_fiador" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
                                           </tr>
                                           <tr>
-                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Tipo de propiedad</div></td>
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Tipo de propiedad 1</div></td>
                                             <td class="border border-gray-800">
-                                                <select
+                                                <select name="g1_tp1"
                                                 class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                 <option>Casa</option>
                                                 <option>PH</option>
@@ -143,20 +135,43 @@
                                             </select><div class="text-center"></div></td>
                                           </tr>
                                           <tr>
-                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Direccion</div></td>
-                                            <td class="border border-gray-800"><div class="text-center"><input type="text" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
-                                          </tr>            
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Direccion 1</div></td>
+                                            <td class="border border-gray-800"><div class="text-center"><input type="text" name="g1_d1" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
+                                          </tr>  
+                                          <tr>
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Tipo de propiedad 2</div></td>
+                                            <td class="border border-gray-800">
+                                                <select name="g1_tp2"
+                                                class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option>Casa</option>
+                                                <option>PH</option>
+                                                <option>Departamento</option>
+                                                <option>Edificio</option>
+                                                <option>Terreno</option>
+                                            </select><div class="text-center"></div></td>
+                                          </tr>
+                                          <tr>
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Direccion 2</div></td>
+                                            <td class="border border-gray-800"><div class="text-center"><input type="text" name="g1_d2" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
+                                          </tr>          
                                         </tbody>
                                         </table>
                                     
                                       </div>
-                                      <div class="col-span-6 sm:col-span-3 justify-self-center">
+                                     
+
+
+
+                                    <input type="hidden" value="2" name="category_id">
+
+
+                                    <div class="col-span-6 sm:col-span-3 justify-self-center">
 
        
                                         <table class="pr-3">
                                         <thead>
                                           <tr class="bg-gray-500 ">
-                                            <th class="border border-gray-800 w-44">Gartantia 1</th>
+                                            <th class="border border-gray-800 w-44">Gartantia 2</th>
                                             <th class="border border-gray-800 w-36"></th>         
                                           </tr>
                                         </thead>
@@ -166,12 +181,12 @@
                                     
                                           <tr>
                                             <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Fiador</div></td>
-                                            <td class="border border-gray-800"><div class="text-center"><input type="text" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
+                                            <td class="border border-gray-800"><div class="text-center"><input type="text" name="g2_fiador" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
                                           </tr>
                                           <tr>
-                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Tipo de propiedad</div></td>
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Tipo de propiedad 1</div></td>
                                             <td class="border border-gray-800">
-                                                <select
+                                                <select name="g2_tp1"
                                                 class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                 <option>Casa</option>
                                                 <option>PH</option>
@@ -181,17 +196,35 @@
                                             </select><div class="text-center"></div></td>
                                           </tr>
                                           <tr>
-                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Direccion</div></td>
-                                            <td class="border border-gray-800"><div class="text-center"><input type="text" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
-                                          </tr>            
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Direccion 1</div></td>
+                                            <td class="border border-gray-800"><div class="text-center"><input type="text" name="g2_d1" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
+                                          </tr>  
+                                          <tr>
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Tipo de propiedad 2</div></td>
+                                            <td class="border border-gray-800">
+                                                <select name="g2_tp2"
+                                                class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option>Casa</option>
+                                                <option>PH</option>
+                                                <option>Departamento</option>
+                                                <option>Edificio</option>
+                                                <option>Terreno</option>
+                                            </select><div class="text-center"></div></td>
+                                          </tr>
+                                          <tr>
+                                            <td class="border border-gray-800 bg-gray-300 "><div class="text-center">Direccion 2</div></td>
+                                            <td class="border border-gray-800"><div class="text-center"><input type="text" name="g2_d2" class="block w-full border border-gray-300 bg-white focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></div></td>
+                                          </tr>          
                                         </tbody>
                                         </table>
                                     
                                       </div>
+                                     
 
 
 
                                     <input type="hidden" value="2" name="category_id">
+
 
 
 

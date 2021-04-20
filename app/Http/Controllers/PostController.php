@@ -42,9 +42,6 @@ class PostController extends Controller
             ->orderBy('updated_at', 'desc')
             ->paginate($this::PAGINACION);
 
-
-
-
         return view('posts.index', compact('post', 'texto', 'texto_rubro', 'texto_vigencia_de_contrato'));
     }
 
