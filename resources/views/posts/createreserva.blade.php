@@ -3,9 +3,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-300 ">
 
 
-        <form action="{{ route('posts.store') }}" method="POST">
 
-            @csrf
+      <form action="{{route('posts.update',$post)}}" method="post">
+
+        @csrf
+    
+        @method('put')
 
             <div class="hidden sm:block" aria-hidden="true">
                 <div class="py-5">
@@ -224,7 +227,22 @@
 
 
                                     <input type="hidden" value="2" name="category_id">
-
+                                    <input type="hidden" value="{{$post->escalonado}}" name="escalonado">
+                                    <input type="hidden" value="{{$post->condicionfiscal}}" name="condicionfiscal">
+                                    <input type="hidden" value="{{$post->rubro}}" name="rubro">
+                                    <input type="hidden" value="{{$post->direccion}}" name="direccion">
+                                    <input type="hidden" value="{{$post->localidad}}" name="localidad">
+                                    <input type="hidden" value="{{$post->provincia}}" name="provincia">
+                                    <input type="hidden" value="{{$post->codigo_postal}}" name="codigo_postal">
+                                    <input type="hidden" value="{{$post->fecha_estimada_de_firma}}" name="fecha_estimada_de_firma">
+                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="vigencia_de_contrato">
+                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="fecha_de_vencimiento">
+                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="cantidad_de_meses">
+                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="realizar">
+                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="autorizacion">
+                                  
+                                    
+                                    
 
 
 

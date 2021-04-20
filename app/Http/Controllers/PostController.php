@@ -138,9 +138,7 @@ class PostController extends Controller
         $post->realizar = $request->realizar;
         $post->autorizacion = $request->autorizacion;
 
-
-
-
+       
 
         $post->user_id = Auth::user()->id;
         $post->team_id = Auth::user()->currentTeam->id;
@@ -267,8 +265,25 @@ class PostController extends Controller
         $post->codigo_postal = $request->codigo_postal;
         $post->fecha_estimada_de_firma = $request->fecha_estimada_de_firma;
 
-
-
+        $post->mpp_transferencia = $request->mpp_transferencia;
+        $post->mpd_efectivo = $request->mpd_efectivo;
+        $post->mpd_transferencia = $request->mpd_transferencia;
+        $post->oferente = $request->oferente;
+        $post->locatario = $request->locatario;
+        
+        $post->g1_fiador = $request->g1_fiador;
+        $post->g1_tp1 = $request->g1_tp1;
+        $post->g1_d1 = $request->g1_d1;
+        $post->g1_tp2 = $request->g1_tp2;
+        $post->g1_d2 = $request->g1_d2;
+        
+        $post->g2_fiador = $request->g2_fiador;
+        $post->g2_tp1 = $request->g2_tp1;
+        $post->g2_d1 = $request->g2_d1;
+        $post->g2_tp2 = $request->g2_tp2;
+        $post->g2_d2 = $request->g2_d2;
+        $post->mpp_efectivo = $request->mpp_efectivo;
+        
         $post->user_id = Auth::user()->id;
         $post->team_id = Auth::user()->currentTeam->id;
         $post->category_id = $request->category_id;
@@ -276,7 +291,15 @@ class PostController extends Controller
         $post->save();
 
 
-        return view('posts.show', compact('post'));
+        $creado = Carbon::createFromDate($post->created_at->toDateTimeString())->format('H:i , d / m / Y');
+        $actualizado = Carbon::createFromDate($post->updated_at->toDateTimeString())->format('H:i , d / m / Y');
+        $fecha_estimada_de_firma = Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
+        $vigencia_de_contrato = Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
+        $respuesta1 = Http::get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
+        $valor_dolar=$respuesta1->json();
+
+
+        return view('posts.show', compact('post','creado','actualizado','fecha_estimada_de_firma','vigencia_de_contrato','valor_dolar'));
     }
 
     public function destroy(Post $post)

@@ -33,6 +33,25 @@ class CreatePostsTable extends Migration
             $table->string('autorizacion');
 
             $table->string('fecha_estimada_de_firma');
+
+            $table->string('mpp_efectivo')->nullable();
+            $table->string('mpp_transferencia')->nullable();
+            $table->string('mpd_efectivo')->nullable();
+            $table->string('mpd_transferencia')->nullable();
+            $table->string('oferente')->nullable();
+            $table->string('locatario')->nullable();
+
+            $table->string('g1_fiador')->nullable();
+            $table->string('g1_tp1')->nullable();
+            $table->string('g1_d1')->nullable();
+            $table->string('g1_tp2')->nullable();
+            $table->string('g1_d2')->nullable();
+
+            $table->string('g2_fiador')->nullable();
+            $table->string('g2_tp1')->nullable();
+            $table->string('g2_d1')->nullable();
+            $table->string('g2_tp2')->nullable();
+            $table->string('g2_d2')->nullable();
             
            
       
