@@ -57,8 +57,15 @@ class PostController extends Controller
         $fecha_estimada_de_firma = Carbon::createFromDate($post->fecha_estimada_de_firma)->format('d / m / Y');
         $vigencia_de_contrato = Carbon::createFromDate($post->vigencia_de_contrato)->format('d / m / Y');
 
+        if($post->category_id == 2){
+            $categoria_2 = "Propuesta de alquiler y Reserva";
 
-        return view('posts.show', compact('post', 'creado', 'actualizado', 'fecha_estimada_de_firma', 'vigencia_de_contrato','valor_dolar'));
+        }else{
+            $categoria_2 = "Propuesta de alquiler";
+        }
+
+
+        return view('posts.show', compact('post', 'creado', 'actualizado', 'fecha_estimada_de_firma', 'vigencia_de_contrato','valor_dolar','categoria_2'));
     }
 
     public function category(Category $category)
@@ -298,8 +305,15 @@ class PostController extends Controller
         $respuesta1 = Http::get('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
         $valor_dolar=$respuesta1->json();
 
+        if($post->category_id == 2){
+            $categoria_2 = "Propuesta de alquiler y Reserva";
 
-        return view('posts.show', compact('post','creado','actualizado','fecha_estimada_de_firma','vigencia_de_contrato','valor_dolar'));
+        }else{
+            $categoria_2 = "Propuesta de alquiler";
+        }
+
+
+        return view('posts.show', compact('post','creado','actualizado','fecha_estimada_de_firma','vigencia_de_contrato','valor_dolar','categoria_2'));
     }
 
     public function destroy(Post $post)

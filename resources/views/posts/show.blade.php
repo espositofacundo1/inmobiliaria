@@ -11,7 +11,7 @@ use App\Models\User;
 
                 <div class="col-span-2">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        {{ Category::find($post->category_id)->name }}
+                        {{ $categoria_2 }}
                     </h3>
                     <p class="mt-1 max-w-2xl text-sm text-gray-500">
                         Creado por {{ User::find($post->user_id)->name }} a las: {{ $creado }}<br>
@@ -36,7 +36,7 @@ use App\Models\User;
 
                 <div class="col-span-1 justify-self-end">
 
-                    <div class="pl-6 pb-3 ">
+                    <div class="pl-6 pb-3 @if($post->category_id == 2): hidden  @endif ">
                         <a href="{{ route('posts.edit', $post) }}">
                             <button
                                 class="bg-green-400 duration-500 ease-in-out hover:bg-green-200 rounded-md w-20 px-4 py-1 mr-1 text-green-800 ">Editar

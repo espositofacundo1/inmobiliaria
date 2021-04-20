@@ -10,25 +10,39 @@ use App\Models\Category;
         <br>
 
         <section>
-            <header class="flex items-center justify-between">
+            <header>
 
 
-                @livewire('home')
+                <form action="{{ route('posts.index') }}" method="GET">
+                    <div class="grid grid-cols-4">
 
+                        <div class="grid col-span-3">
+                            <div>
+                                Vigencia:
+                                <input type="date"
+                                    class="focus:border-gray-500 w-36 focus:ring-1 focus:ring-gray-500 focus:outline-none  text-sm text-black placeholder-gray-500 border border-blue-700 rounded-md py-2 px-1 "
+                                    placeholder="dd/mm/aa" name="texto_vigencia_de_contrato"
+                                    value="{{ $texto_vigencia_de_contrato }}" />
+                            </div>
+                        </div>
 
-                <a href="{{ route('posts.create') }}">
-                    <button
-                        class="hover:bg-gray-700 hover:text-gray-200 h-10 flex  bg-gray-800 text-gray-200 text-sm px-4 py-2 rounded-md  ">
+                        <div class="grid col-span-1 justify-self-end">
 
-                        <svg class="group-hover:text-gray-600 text-green-400 mr-2 animate-pulse " width="12" height="20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z" />
-                        </svg>
-                        <h1 class="text-base tracking-widest">Nuevo!</h1>
-                    </button>
-                </a>
+                            <a href="{{ route('posts.create') }}">
 
+                                <button
+                                    class="hover:bg-gray-700 hover:text-gray-200 h-10 flex  bg-gray-800 text-gray-200 text-sm px-4 py-2 rounded-md  ">
+
+                                    <svg class="group-hover:text-gray-600 text-green-400 mr-2 animate-pulse " width="12"
+                                        height="20" fill="currentColor">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z" />
+                                    </svg>
+                                    <h1 class="text-base tracking-widest">Nuevo!</h1>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
             </header>
             <br>
 
@@ -41,10 +55,14 @@ use App\Models\Category;
                         <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table class="min-w-full divide-y divide-gray-200">
                                 <thead class="bg-gray-800">
+
                                     <tr>
                                         <th scope="col"
                                             class="px-6 py-3 text-left font-medium text-gray-100 text-sm uppercase tracking-wider">
-                                            direccion
+                                           
+                                            <input
+                                                class="focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:outline-none  text-sm text-black placeholder-gray-500 border border-blue-700 rounded-md py-2 px-1 "
+                                                placeholder="Direccion" name="texto" value="{{ $texto }}" />
 
                                         </th>
                                         <th scope="col"
@@ -55,14 +73,30 @@ use App\Models\Category;
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left  font-medium text-gray-100 text-sm uppercase tracking-wider">
-                                            Locador
+                                       
+                                            <input
+                                                class="focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:outline-none  text-sm text-black placeholder-gray-500 border border-blue-700 rounded-md py-2 px-1 "
+                                                placeholder="texto_rubro" name="texto_rubro" value="{{ $texto_rubro }}" />
+
                                         </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left  font-medium text-gray-100 text-sm uppercase tracking-wider">
                                             Locatario
                                         </th>
                                         <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Edit</span>
+                                            <div class="flex justify-center">
+                                            <button type="submit"
+                                                class="hover:bg-purple-500 hover:text-purple-800 h-10 flex bg-purple-900 text-purple-200 text-sm px-4 py-2 rounded-md  ">
+                                                
+                                                <svg width="20" height="20" fill="currentColor"
+                                                    class=" animate-pulse">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
+                                                </svg> 
+                                                <span class="pl-2">Buscar</span>
+                                            </button>
+                                            </div>
+                                            </form>
                                         </th>
 
                                     </tr>
@@ -71,7 +105,8 @@ use App\Models\Category;
 
                                     @foreach ($post as $posts)
 
-                                        <tr>
+                                        <tr class=" @if ($posts->category_id == 2) :
+                                            bg-green-50 @endif ">
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
@@ -92,34 +127,39 @@ use App\Models\Category;
                                                 <div class="text-sm text-gray-500">aca va un texto a eleccion</div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <span
-                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                                                    Apellido
-                                                </span><br>
+
                                                 <span
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                    Nombre
+                                                    {{ $posts->oferente }}
                                                 </span>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                                                    Apellido
-                                                </span><br>
-                                                <span
-                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                    Nombre
+                                                    {{ $posts->locatario }}
                                                 </span>
+
                                             </td>
 
                                             <td>
+                                                <div class="flex justify-center">
                                                 <a href="{{ route('posts.show', $posts) }}">
+                                                
                                                     <button
-                                                        class="bg-green-400 duration-500 ease-in-out hover:bg-green-200 rounded-md px-4 py-1 mr-1 text-green-800 ">
-                                                        Ver
+                                                        class="bg-green-400 duration-500 ease-in-out hover:bg-green-200 rounded-md px-2 py-1  text-green-800 grid grid-cols-2">
+
+                                                        <svg width="20" height="20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                        class=" animate-pulse">
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+                                                    </svg> 
+
+                                                    <span>Ver</span>
                                                     </button>
+                                                    </div>
                                                 </a>
+                                         
 
                                             </td>
                                         </tr>
