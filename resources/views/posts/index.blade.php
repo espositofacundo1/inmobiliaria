@@ -11,6 +11,22 @@ use App\Models\Category;
 
         <section>
             <header>
+                <div class="grid col-span-1 justify-self-end">
+
+                    <a href="{{ route('posts.create') }}">
+
+                        <button
+                            class="hover:bg-gray-700 hover:text-gray-200 h-10 flex  bg-gray-800 text-gray-200 text-sm px-4 py-2 rounded-md  ">
+
+                            <svg class="group-hover:text-gray-600 text-green-400 mr-2 animate-pulse " width="12"
+                                height="20" fill="currentColor">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z" />
+                            </svg>
+                            <h1 class="text-base tracking-widest">Nuevo!</h1>
+                        </button>
+                    </a>
+                </div>
 
 
                 <form action="{{ route('posts.index') }}" method="GET">
@@ -26,22 +42,7 @@ use App\Models\Category;
                             </div>
                         </div>
 
-                        <div class="grid col-span-1 justify-self-end">
-
-                            <a href="{{ route('posts.create') }}">
-
-                                <button
-                                    class="hover:bg-gray-700 hover:text-gray-200 h-10 flex  bg-gray-800 text-gray-200 text-sm px-4 py-2 rounded-md  ">
-
-                                    <svg class="group-hover:text-gray-600 text-green-400 mr-2 animate-pulse " width="12"
-                                        height="20" fill="currentColor">
-                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                            d="M6 5a1 1 0 011 1v3h3a1 1 0 110 2H7v3a1 1 0 11-2 0v-3H2a1 1 0 110-2h3V6a1 1 0 011-1z" />
-                                    </svg>
-                                    <h1 class="text-base tracking-widest">Nuevo!</h1>
-                                </button>
-                            </a>
-                        </div>
+                       
                     </div>
             </header>
             <br>
@@ -76,7 +77,7 @@ use App\Models\Category;
                                        
                                             <input
                                                 class="focus:border-gray-500 focus:ring-1 focus:ring-gray-500 focus:outline-none  text-sm text-black placeholder-gray-500 border border-blue-700 rounded-md py-2 px-1 "
-                                                placeholder="texto_rubro" name="texto_rubro" value="{{ $texto_rubro }}" />
+                                                placeholder="Locatario" name="texto_locatario" value="{{ $texto_locatario }}" />
 
                                         </th>
                                         <th scope="col"
@@ -130,14 +131,14 @@ use App\Models\Category;
 
                                                 <span
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                                    {{ $posts->oferente }}
+                                                    {{ $posts->locatario }}
                                                 </span>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <span
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
-                                                    {{ $posts->locatario }}
+                                                    falta hacer columna de locatario
                                                 </span>
 
                                             </td>

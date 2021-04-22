@@ -31,18 +31,18 @@ class PostController extends Controller
 
 
         $texto = trim($request->get('texto'));
-        $texto_rubro = trim($request->get('texto_rubro'));
+        $texto_locatario = trim($request->get('texto_locatario'));
         $texto_vigencia_de_contrato = trim($request->get('texto_vigencia_de_contrato'));
 
 
         $post = Post::where('team_id', 'Like', Auth::user()->currentTeam->id)
             ->where('direccion', 'LIKE', '%' . $texto . '%')
-            ->where('rubro', 'LIKE', '%' . $texto_rubro . '%')
+            ->where('locatario', 'LIKE', '%' . $texto_locatario . '%')
             ->where('vigencia_de_contrato', 'LIKE', '%' . $texto_vigencia_de_contrato . '%')
             ->orderBy('updated_at', 'desc')
             ->paginate($this::PAGINACION);
 
-        return view('posts.index', compact('post', 'texto', 'texto_rubro', 'texto_vigencia_de_contrato'));
+        return view('posts.index', compact('post', 'texto', 'texto_locatario', 'texto_vigencia_de_contrato'));
     }
 
     public function show(Post $post)

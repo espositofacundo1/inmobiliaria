@@ -26,9 +26,7 @@
                                 -los <strong>metodos de pago</strong> que deberan coincidir con el deposito cargado previamente en la etapa de Propuesta de alquiler
                                 .En el caso que desees cambiar el monto del depocito tendras que ir a ver->editar->actualizar.<br><br>
 
-                                -<strong>Oferete y locatario:</strong> Se concidera oferente a la persona que solicita la propuesta de alquiler mientras el locatario es el 
-                                que sera legalmente el responsable. En el caso de que el oferente y locatario coincidan <strong>puedes dejar vacia la casilla de locatario</strong>, el 
-                                sistema reconocera que en ese caso los dos son la misma persona.
+                                -<strong>Oferete y locatario:</strong> Se concidera oferente a la persona que solicita la propuesta de alquiler mientras el locatario es quien paga el precio para tener derecho a su uso y goce. 
                             </p>
                         </div>
                     </div>

@@ -38,8 +38,8 @@ class CreatePostsTable extends Migration
             $table->string('mpp_transferencia')->nullable();
             $table->string('mpd_efectivo')->nullable();
             $table->string('mpd_transferencia')->nullable();
-            $table->string('oferente')->nullable();
-            $table->string('locatario')->nullable();
+            $table->string('oferente')->default('vacio');
+            $table->string('locatario')->default('vacio');
 
             $table->string('g1_fiador')->nullable();
             $table->string('g1_tp1')->nullable();
