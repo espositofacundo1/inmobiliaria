@@ -10,14 +10,12 @@ use App\Models\Category;
         <br>
 
         <section>
-            <header>
-                <div class="grid col-span-1 justify-self-end">
+            <header class="grid grid-cols-2">
+                <div class="grid col-span-1">
 
                     <a href="{{ route('posts.create') }}">
-
                         <button
                             class="hover:bg-gray-700 hover:text-gray-200 h-10 flex  bg-gray-800 text-gray-200 text-sm px-4 py-2 rounded-md  ">
-
                             <svg class="group-hover:text-gray-600 text-green-400 mr-2 animate-pulse " width="12"
                                 height="20" fill="currentColor">
                                 <path fill-rule="evenodd" clip-rule="evenodd"
@@ -30,20 +28,15 @@ use App\Models\Category;
 
 
                 <form action="{{ route('posts.index') }}" method="GET">
-                    <div class="grid grid-cols-4">
-
-                        <div class="grid col-span-3">
-                            <div>
-                                Vigencia:
+                  
+                            <div clas="">
+                                Vigencia : 
                                 <input type="date"
                                     class="focus:border-gray-500 w-36 focus:ring-1 focus:ring-gray-500 focus:outline-none  text-sm text-black placeholder-gray-500 border border-blue-700 rounded-md py-2 px-1 "
                                     placeholder="dd/mm/aa" name="texto_vigencia_de_contrato"
                                     value="{{ $texto_vigencia_de_contrato }}" />
                             </div>
-                        </div>
-
-                       
-                    </div>
+                
             </header>
             <br>
 
