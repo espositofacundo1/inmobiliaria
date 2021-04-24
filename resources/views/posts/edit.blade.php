@@ -346,44 +346,46 @@
                                             <tr>
                                                 <td class="border border-gray-800"><input value="OSSE" disabled
                                                         class=" text-center"></td>
-                                                <td class="border border-gray-800"><input name="osse" value="{{ old('osse') }}"
+                                                <td class="border border-gray-800"><input name="osse" value="{{old('osse',$objeto2[0]->osse)}}"
                                                         class="w-36 text-center"></td>
+
+                                                  
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="osse_solicitar"
-                                                            type="checkbox"></div>
+                                                            type="checkbox"  @if($objeto2[0]->osse_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="EDEA" disabled
                                                         class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="edea" value="{{ old('edea') }}"
+                                                <td class="border border-gray-800"><input name="edea" value="{{old('edea',$objeto2[0]->edea)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="edea_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->edea_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="GAS" disabled
                                                         class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="gas" value="{{ old('gas') }}"
+                                                <td class="border border-gray-800"><input name="gas" value="{{old('gas',$objeto2[0]->gas)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="gas_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->gas_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="TSU" disabled
                                                         class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="tsu" value="{{ old('tsu') }}"
+                                                <td class="border border-gray-800"><input name="tsu" value="{{old('tsu',$objeto2[0]->tsu)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="tsu_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->tsu_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
@@ -391,76 +393,76 @@
                                                 <td class="border border-gray-800"><input
                                                         value="Expensas extraordinarias" disabled class="text-center">
                                                 </td>
-                                                <td class="border border-gray-800"><input name="expensas_extra" value="{{ old('expensas_extra') }}"
+                                                <td class="border border-gray-800"><input name="expensas_extra" value="{{old('expensas_extra',$objeto2[0]->expensas_extra)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="expensas_extra_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->expensas_extra_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="Expensas ordinarias"
                                                         disabled class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="expensas_ord" value="{{ old('expensas_ord') }}"
+                                                <td class="border border-gray-800"><input name="expensas_ord" value="{{old('expensas_ord',$objeto2[0]->expensas_ord)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="expensas_ord_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->expensas_ord_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="arba" disabled
                                                         class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="arba" value="{{ old('arba') }}"
+                                                <td class="border border-gray-800"><input name="arba" value="{{old('arba',$objeto2[0]->arba)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="arba_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->arba_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="seguro" disabled
                                                         class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="seguro" value="{{ old('seguro') }}"
+                                                <td class="border border-gray-800"><input name="seguro" value="{{old('seguro',$objeto2[0]->seguro)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="seguro_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->seguro_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="border border-gray-800"><input value="{{ old('otros1_nombre', 'Otros 1') }}"
+                                                <td class="border border-gray-800"><input value="{{old('otros1_nombre',$objeto2[0]->otros1_nombre)}}"
                                                         name="otros1_nombre" class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="otros1" value="{{ old('otros1') }}"
+                                                <td class="border border-gray-800"><input name="otros1" value="{{old('otros1',$objeto2[0]->otros1)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="otros1_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->otros1_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
-                                                <td class="border border-gray-800"><input value="{{ old('otros2_nombre', 'Otros 2') }}"
+                                                <td class="border border-gray-800"><input value="{{old('otros2_nombre',$objeto2[0]->otros2_nombre)}}"
                                                         name="otros2_nombre" class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="otros2" value="{{ old('otros2') }}"
+                                                <td class="border border-gray-800"><input name="otros2" value="{{old('otros2',$objeto2[0]->otros2)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="otros2_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->otros2_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
                                             <tr>
-                                                <td class="border border-gray-800"><input value="{{ old('otros3_nombre', 'Otros 3') }}"
+                                                <td class="border border-gray-800"><input value="{{old('otros3_nombre',$objeto2[0]->otros3_nombre)}}"
                                                         name="otros3_nombre" class="text-center"></td>
-                                                <td class="border border-gray-800"><input name="otros3" value="{{ old('otros3') }}"
+                                                <td class="border border-gray-800"><input name="otros3" value="{{old('otros3',$objeto2[0]->otros3)}}"
                                                         class="w-36 text-center"></td>
                                                 <td class="border border-gray-800 ">
                                                     <div class="text-center"><input name="otros3_solicitar"
-                                                            type="checkbox"></div>
+                                                        type="checkbox"  @if($objeto2[0]->otros3_solicitar == 'on' ) checked @endif></div>
                                                 </td>
                                             </tr>
 
@@ -540,7 +542,7 @@
                 <div class="px-4 py-3 bg-gray-800 text-right sm:px-6">
                     <button type="submit"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                        Guardar
+                        Actualizar
                     </button>
                 </div>
 
@@ -554,167 +556,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<x-app-layout>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-300 ">
-
-  <form action="{{route('posts.update',$post)}}" method="post">
-
-    @csrf
-
-    @method('put')
-
-  <div class="hidden sm:block" aria-hidden="true">
-    <div class="py-5">
-      <div class="border-t border-gray-200"></div>
-    </div>
-  </div>
-  
-  <div class="mt-10 sm:mt-0">
-    <div class="md:grid md:grid-cols-3 md:gap-6">
-      <div class="md:col-span-1">
-        <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6 text-gray-900"><strong>Step 1:</strong> Datos iniciales</h3>
-          <p class="mt-1 text-sm text-gray-600">
-            Tipo de propuesta, condicion fiscal, dirección y fecha.
-          </p>
-        </div>
-      </div>
-      <div class="mt-5 md:mt-0 md:col-span-2">
-        <form action="#" method="POST">
-          <div class="shadow overflow-hidden sm:rounded-md">
-            <div class="px-4 py-5 bg-gray-50 sm:p-6">
-
-
-              <div class="grid grid-cols-6 gap-6">
-
-
-
-                <div class="col-span-6 sm:col-span-6">
-                    <label for="escalonado" class="block text-sm font-medium text-gray-700">Escalonado / Indexado</label>
-                    <select id="escalonado" name="escalonado" value="{{$post->escalonado}}" autocomplete="Escalonado" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                      <option value="Escalonado" @if($post->escalonado == 'Escalonado' ) selected @endif >Escalonado</option>
-                      <option value="Indexado" @if($post->escalonado == 'Indexado' ) selected @endif>Indexado</option>
-                    </select>
-                </div>
-            
-
-
-
-
-                <div class="col-span-6 sm:col-span-3">
-                    <label for="condicionfiscal" class="block text-sm font-medium text-gray-700">¿El locador es Responsble Inscripto?</label>
-                    <select id="condicionfiscal" name="condicionfiscal" value="{{$post->condicionfiscal}}" autocomplete="condicionfiscal" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                      <option value="Si" @if($post->condicionfiscal == 'Si' ) selected @endif >Si</option>
-                      <option value="No" @if($post->condicionfiscal == 'No' ) selected @endif >No</option>
-                    </select>
-                  </div>
-  
-                <div class="col-span-6 sm:col-span-3">
-
-                    <label for="rubro" class="block text-sm font-medium text-gray-700">Rubro</label>
-                  <input type="text" name="rubro" id="rubro" value="{{old('rubro',$post->rubro)}}" autocomplete="rubro" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
-                 
-                  @error('rubro')
-                    <small>*{{$message}}</small>   
-                    @enderror   
-
-                </div>
- 
-                
-                <div class="col-span-6">
-                  <label for="direccion" class="block text-sm font-medium text-gray-700">Direccion</label>
-                  <input type="text" name="direccion" id="direccion" value="{{old('direccion',$post->direccion)}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                  @error('direccion')
-                  <small>*{{$message}}</small>   
-                  @enderror 
-                </div>
-  
-                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                  <label for="localidad" class="block text-sm font-medium text-gray-700">Localidad</label>
-                  <input type="text" name="localidad" id="localidad" value="{{old('localidad',$post->localidad)}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                  @error('localidad')
-                  <small>*{{$message}}</small>   
-                  @enderror   
-                
-                </div>
-  
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label for="provincia" class="block text-sm font-medium text-gray-700">Provincia</label>
-                  <input type="text" name="provincia" id="provincia" value="{{old('provincia',$post->provincia)}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                  @error('provincia')
-                  <small>*{{$message}}</small>   
-                  @enderror   
-                </div>
-  
-                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                  <label for="codigo_postal" class="block text-sm font-medium text-gray-700">Codigo postal</label>
-                  <input type="text" name="codigo_postal" id="codigo_postal" value="{{old('codigo_postal',$post->codigo_postal)}}"  class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                  @error('codigo_postal')
-                  <small>*{{$message}}</small>   
-                  @enderror   
-                </div>
-  
-                
-                
-                
-                <div class="col-span-6 sm:col-span-3">
-                <label for="fecha_estimada_de_firma" class="block text-sm font-medium text-gray-700">Fecha estimativa de firma</label>
-                <input type="date"  name="fecha_estimada_de_firma" value="{{old('fecha_estimada_de_firma',$post->fecha_estimada_de_firma)}}" id="fecha_estimada_de_firma" autocomplete="date" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
-                @error('fecha_estimada_de_firma')
-                <small>*{{$message}}</small>   
-                @enderror     
-                </div>
-                
-                <div class="col-span-6 sm:col-span-3">
-                <label for="vigencia_de_contrato" class="block text-sm font-medium text-gray-700">Vigencia del contrato</label>
-                <input type="date" name="vigencia_de_contrato" id="vigencia_de_contrato" autocomplete="date" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">                
-                @error('vigencia_de_contrato')
-                    <small>*{{$message}}</small>   
-                    @enderror   
-                </div>
-
-                <input type="hidden" value="1" name="category_id">
-
-
-                
-              </div>
-            </div>
-            <div class="px-4 py-3 bg-gray-800 text-right sm:px-6">
-              <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Actualizar
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  
-  </form>
-    </div>
-
-    
-
-
-    
-</x-app-layout>
 
 
 
