@@ -1,8 +1,4 @@
-<?php use Carbon\Carbon;
-
-
-
-?>
+<?php use Carbon\Carbon;?>
 <x-app-layout>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-300 ">
@@ -490,28 +486,28 @@
                                             <tr>
                                                 <td class="border border-gray-800"><input value="Meses adelantados"
                                                         disabled class=" text-center"></td>
-                                                <td class="border border-gray-800"><input name="adelanto" value="{{ old('adelanto') }}"
+                                                <td class="border border-gray-800"><input name="adelanto" value="{{old('adelanto',$objeto3[0]->adelanto)}}"
                                                         class="w-36 text-center"></td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="Deposito en pesos"
                                                         disabled class=" text-center"></td>
-                                                <td class="border border-gray-800"><input name="deposito_en_pesos" value="{{ old('deposito_en_pesos') }}"
+                                                <td class="border border-gray-800"><input name="deposito_en_pesos" value="{{old('deposito_en_pesos',$objeto3[0]->deposito_en_pesos)}}"
                                                         value="" class="w-36 text-center"></td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="Deposito en USD"
                                                         disabled class=" text-center"></td>
-                                                <td class="border border-gray-800"><input name="deposito_en_usd" value="{{ old('deposito_en_usd') }}"
+                                                <td class="border border-gray-800"><input name="deposito_en_usd" value="{{old('deposito_en_usd',$objeto3[0]->deposito_en_usd)}}"
                                                         value="" class="w-36 text-center"></td>
                                             </tr>
 
                                             <tr>
                                                 <td class="border border-gray-800"><input value="Informes" disabled
                                                         class=" text-center"></td>
-                                                <td class="border border-gray-800"><input name="informes" value="{{ old('informes') }}"
+                                                <td class="border border-gray-800"><input name="informes" value="{{old('informes',$objeto3[0]->informes)}}"
                                                         class="w-36 text-center"></td>
                                             </tr>
 
