@@ -1,4 +1,8 @@
-<?php use Carbon\Carbon; ?>
+<?php use Carbon\Carbon;
+
+
+
+?>
 <x-app-layout>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-300 ">
@@ -137,7 +141,7 @@
 
                                     <div class="col-span-6 sm:col-span-3">
                                       <label for="condicionfiscal" class="block text-sm font-medium text-gray-700">¿El locador es Responsble Inscripto?</label>
-                                      <select id="condicionfiscal" name="condicionfiscal" value="{{$post->condicionfiscal}}" autocomplete="condicionfiscal" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                      <select id="condicionfiscal" name="condicionfiscal" value="{{$post->condicionfiscal}}"  class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option value="Si" @if($post->condicionfiscal == 'Si' ) selected @endif >Si</option>
                                         <option value="No" @if($post->condicionfiscal == 'No' ) selected @endif >No</option>
                                       </select>
@@ -218,11 +222,6 @@
                                     </div>
 
 
-
-
-
-
-
                                     <br>
                                     <div>
 
@@ -273,20 +272,31 @@
                                         </thead>
                                         <tbody>
 
-                                            @for ($i = 1; $i <= $post->cantidad_de_meses; $i++)
+                                            @for ($i = 0; $i <= $q_row_meses +3 ; $i++)
+                                            <?php if ($i<$q_row_meses) 
+                                            { 
+                                                $meses= $objeto[$i]->meses;
+                                                $alquiler= $objeto[$i]->alquiler;
+                                                $facturacion= $objeto[$i]->facturacion;
+                                              
+                                            }else {
+                                                $meses=null;
+                                                $alquiler=null;
+                                                $facturacion=null;
+                                            }    
+                                            ?>
+                                        
 
-                                                <?php if ($i > 12) {
-                                                break;
-                                                } ?>
+                                       
                                                 <tr>
                                                     <td class="border border-gray-800 bg-gray-300"><input type="number"
-                                                            name="{{ 'meses' . $i }}" value="{{ old('meses' . $i) }}" class="w-16 h-8 bg-gray-300">
+                                                            name="{{ 'meses' . $i }}"  value="{{old('meses' . $i,$meses)}}" class="w-16 h-8 bg-gray-300">
                                                     </td>
                                                     <td class="border border-gray-800"><input
-                                                            name="{{ 'alquiler' . $i }}" value="{{ old('alquiler' . $i) }}" type="number"
+                                                            name="{{ 'alquiler' . $i }}" value="{{old('alquiler' . $i,$alquiler)}}" type="number"
                                                             class="w-36 h-8 text-center"></td>
                                                     <td class="border border-gray-800"><input
-                                                            name="{{ 'facturacion' . $i }}" value="{{ old('facturacion' . $i) }}" type="number"
+                                                            name="{{ 'facturacion' . $i }}" value="{{old('facturacion' . $i,$facturacion)}}" type="number"
                                                             class="w-36 h-8 text-center"></td>
                                                 </tr>
                                             @endfor
@@ -295,78 +305,6 @@
 
                                 </div>
 
-                                <?php if ($post->cantidad_de_meses > 12) { ?>
-
-                                <div class="pr-3">
-                                    <table class="pr-3">
-                                        <thead>
-                                            <tr class="bg-gray-500 ">
-                                                <th class="border border-gray-800">Mes</th>
-                                                <th class="border border-gray-800 w-36">Alquiler</th>
-                                                <th class="border border-gray-800 w-36">Facturacion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @for ($i = 13; $i <= $post->cantidad_de_meses; $i++)
-
-                                                <?php if ($i > 24) {
-                                                break;
-                                                } ?>
-                                                <tr>
-                                                    <td class="border border-gray-800 bg-gray-300"><input type="number" value="{{ old('meses' . $i) }}"
-                                                            name="{{ 'meses' . $i }}" class="w-16 h-8 bg-gray-300">
-                                                    </td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'alquiler' . $i }}" type="number" value="{{ old('alquiler' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'facturacion' . $i }}" type="number" value="{{ old('facturacion' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <?php } ?>
-
-                                <?php if ($post->cantidad_de_meses > 24) { ?>
-
-
-                                <div class="pr-3">
-                                    <table class="pr-3">
-                                        <thead>
-                                            <tr class="bg-gray-500 ">
-                                                <th class="border border-gray-800">Mes</th>
-                                                <th class="border border-gray-800 w-36">Alquiler</th>
-                                                <th class="border border-gray-800 w-36">Facturacion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @for ($i = 25; $i <= $post->cantidad_de_meses; $i++)
-
-                                                <?php if ($i > 36) {
-                                                break;
-                                                } ?>
-                                                <tr>
-                                                    <td class="border border-gray-800 bg-gray-300"><input type="number" value="{{ old('meses' . $i) }}"
-                                                            name="{{ 'meses' . $i }}" class="w-16 h-8 bg-gray-300">
-                                                    </td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'alquiler' . $i }}" type="number" value="{{ old('alquiler' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'facturacion' . $i }}" type="number" value="{{ old('facturacion' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <?php } ?>
 
                                 <div class="pr-3 col-span-1 border-gray-700 border-l pl-2 ">
                                     <p>

@@ -242,8 +242,12 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+        $objeto= Alquilere::where('post_id', '=', $post->id)->get();
+        $q_row_meses=count($objeto);
 
-        return view('posts.edit', compact('post'));
+      
+
+        return view('posts.edit', compact('post','objeto','q_row_meses'));
     }
 
     public function update(Request $request, Post $post)
