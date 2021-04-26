@@ -1,7 +1,8 @@
-<?php $cantidad_de_meses = $post->cantidad_de_meses;
+<?php 
 use App\Models\Alquilere;
 use App\Models\User;
 use Carbon\Carbon;
+$cantidad_de_meses=$post->cantidad_de_meses;
 
 $objeto = Alquilere::where('post_id', '=', $post->id)->get();
 
@@ -30,7 +31,7 @@ $suma_iva = 0;
 $suma_documento = 0;
 $suma_total_sin_iva = 0;
 $suma_total = 0;
-$años = round($cantidad_de_meses / 12 + 0.49);
+$años = round($cantidad_de_meses/12 + 0.49);
 
 // Fechas
 

@@ -247,7 +247,8 @@ class PostController extends Controller
         $objeto2= Servicio::where('post_id', '=', $post->id)->get();
         $objeto3= A_pagar_a_la_firma::where('post_id', '=', $post->id)->get();
 
-    
+      
+
         return view('posts.edit', compact('post','objeto','q_row_meses','objeto2','objeto3'));
     }
 
@@ -269,6 +270,7 @@ class PostController extends Controller
 
         ]);
 
+       
         $post->escalonado = $request->escalonado;
         $post->condicionfiscal = $request->condicionfiscal;
         $post->rubro = $request->rubro;
@@ -277,6 +279,16 @@ class PostController extends Controller
         $post->provincia = $request->provincia;
         $post->codigo_postal = $request->codigo_postal;
         $post->fecha_estimada_de_firma = $request->fecha_estimada_de_firma;
+        $post->vigencia_de_contrato = $request->vigencia_de_contrato;
+        $post->fecha_de_vencimiento = $request->fecha_de_vencimiento;
+        $post->cantidad_de_meses = $request->cantidad_de_meses;
+        $post->realizar = $request->realizar;
+        $post->autorizacion = $request->autorizacion;
+
+
+
+
+        if (isset($request->oferente)) {
 
         $post->mpp_transferencia = $request->mpp_transferencia;
         $post->mpd_efectivo = $request->mpd_efectivo;
@@ -296,12 +308,56 @@ class PostController extends Controller
         $post->g2_tp2 = $request->g2_tp2;
         $post->g2_d2 = $request->g2_d2;
         $post->mpp_efectivo = $request->mpp_efectivo;
-        
         $post->user_id = Auth::user()->id;
         $post->team_id = Auth::user()->currentTeam->id;
         $post->category_id = $request->category_id;
+            
+        }
+        
+        
+       
 
         $post->save();
+
+
+        
+        $a = Servicio::where('post_id', '=', $post->id)->get();
+        $objeto2 = Servicio::find($a[0]->id);
+     
+
+
+
+        $objeto2->osse = $request->osse;
+        $objeto2->osse_solicitar = $request->osse_solicitar;
+        $objeto2->edea = $request->edea;
+        $objeto2->edea_solicitar = $request->edea_solicitar;
+        $objeto2->gas = $request->gas;
+        $objeto2->tsu = $request->tsu;
+        $objeto2->tsu_solicitar = $request->tsu_solicitar;
+        $objeto2->expensas_extra = $request->expensas_extra;
+        $objeto2->expensas_extra_solicitar = $request->expensas_extra_solicitar;
+        $objeto2->expensas_ord = $request->expensas_ord;
+        $objeto2->expensas_ord_solicitar = $request->expensas_ord_solicitar;
+        $objeto2->arba = $request->arba;
+        $objeto2->arba_solicitar = $request->arba_solicitar;
+        $objeto2->seguro = $request->seguro;
+        $objeto2->seguro_solicitar = $request->seguro_solicitar;
+        $objeto2->otros1_nombre = $request->otros1_nombre;
+        $objeto2->otros1 = $request->otros1;
+        $objeto2->otros1_solicitar = $request->otros1_solicitar;
+        $objeto2->otros2_nombre = $request->otros2_nombre;
+        $objeto2->otros2 = $request->otros2;
+        $objeto2->otros2_solicitar = $request->otros2_solicitar;
+        $objeto2->otros3_nombre = $request->otros3_nombre;
+        $objeto2->otros3 = $request->otros3;
+        $objeto2->otros3_solicitar = $request->otros3_solicitar;
+
+        $objeto2->post_id = $post->id;
+
+
+        $objeto2->save();
+
+     
 
 
         $creado = Carbon::createFromDate($post->created_at->toDateTimeString())->format('H:i , d / m / Y');

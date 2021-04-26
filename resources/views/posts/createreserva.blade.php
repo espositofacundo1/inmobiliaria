@@ -234,10 +234,10 @@
                                     <input type="hidden" value="{{$post->codigo_postal}}" name="codigo_postal">
                                     <input type="hidden" value="{{$post->fecha_estimada_de_firma}}" name="fecha_estimada_de_firma">
                                     <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="vigencia_de_contrato">
-                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="fecha_de_vencimiento">
-                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="cantidad_de_meses">
-                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="realizar">
-                                    <input type="hidden" value="{{$post->vigencia_de_contrato}}" name="autorizacion">
+                                    <input type="hidden" value="{{$post->fecha_de_vencimiento}}" name="fecha_de_vencimiento">
+                                    <input type="hidden" value="{{$post->cantidad_de_meses}}" name="cantidad_de_meses">
+                                    <input type="hidden" value="{{$post->realizar}}" name="realizar">
+                                    <input type="hidden" value="{{$post->autorizacion}}" name="autorizacion">
                                   
                                     
                                     

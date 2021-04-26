@@ -16,12 +16,8 @@ Route::resource('posts',PostController::class);   //esta linea de codigo tiene t
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {return redirect('posts');})->name('dashboard');
 
 Route::get('posts/{post}/detalle_propuesta', [PostController::class,'detalle_propuesta'])->name('posts.detalle_propuesta');
+
 Route::get('posts/{post}/createreserva', [PostController::class,'createreserva'])->name('posts.createreserva');
-
-
-
-
-
 
 
 
