@@ -16,11 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(30)->create();
+        \App\Models\User::factory(5)->create();
 
         //$this->call(UserSeeder::class);
 
-        \App\Models\Team::factory(10)->create();
+        \App\Models\Team::factory(2)->create();
 
         $this->call(CategorySeeder::class);
 
@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
         
        // \App\Models\Category::factory(6)->create();
       // Post::factory(100)->create();
-       \App\Models\Post::factory(80)->create();
+       \App\Models\Post::factory(10)->create();
     }
 }
