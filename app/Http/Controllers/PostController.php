@@ -357,7 +357,54 @@ class PostController extends Controller
 
         $objeto2->save();
 
+         
+        $b = A_pagar_a_la_firma::where('post_id', '=', $post->id)->get();
+        $a_pagar_a_la_firma = A_pagar_a_la_firma::find($b[0]->id);
+
+
+        $a_pagar_a_la_firma->adelanto = $request->adelanto;
+        $a_pagar_a_la_firma->deposito_en_pesos = $request->deposito_en_pesos;
+        $a_pagar_a_la_firma->deposito_en_usd = $request->deposito_en_usd;
+        $a_pagar_a_la_firma->informes = $request->informes;
+
+        $a_pagar_a_la_firma->post_id = $post->id;
+
+
+        $a_pagar_a_la_firma->save();
+
+
+
+
+        $e = Alquilere::where('post_id', '=', $post->id)->delete();
      
+
+
+
+        for ($i = 0; $i <= $post->cantidad_de_meses; $i++) {
+
+            $a = "alquiler" . $i;
+            $b = "facturacion" . $i;
+            $c = "meses" . $i;
+            $d = "instancia" . $i;
+
+
+            $d = new Alquilere();
+
+            $d->alquiler = $request->$a;
+            $d->facturacion = $request->$b;
+            $d->meses = $request->$c;
+            $d->post_id = $post->id;
+
+            if ($d->meses == null) {
+                break;
+            }
+
+            $d->save();
+
+      
+        }
+
+
 
 
         $creado = Carbon::createFromDate($post->created_at->toDateTimeString())->format('H:i , d / m / Y');
