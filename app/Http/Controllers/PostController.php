@@ -270,7 +270,7 @@ class PostController extends Controller
 
         ]);
 
-       
+     
         $post->escalonado = $request->escalonado;
         $post->condicionfiscal = $request->condicionfiscal;
         $post->rubro = $request->rubro;
@@ -284,6 +284,8 @@ class PostController extends Controller
         $post->cantidad_de_meses = $request->cantidad_de_meses;
         $post->realizar = $request->realizar;
         $post->autorizacion = $request->autorizacion;
+
+    
 
 
 
@@ -311,21 +313,20 @@ class PostController extends Controller
         $post->user_id = Auth::user()->id;
         $post->team_id = Auth::user()->currentTeam->id;
         $post->category_id = $request->category_id;
-            
+
+
+       
         }
         
         
-       
-
         $post->save();
+            
 
-
+        if (!isset($request->oferente)) {
         
         $a = Servicio::where('post_id', '=', $post->id)->get();
         $objeto2 = Servicio::find($a[0]->id);
      
-
-
 
         $objeto2->osse = $request->osse;
         $objeto2->osse_solicitar = $request->osse_solicitar;
@@ -382,6 +383,8 @@ class PostController extends Controller
 
         for ($i = 0; $i <= $post->cantidad_de_meses; $i++) {
 
+      
+
             $a = "alquiler" . $i;
             $b = "facturacion" . $i;
             $c = "meses" . $i;
@@ -403,6 +406,8 @@ class PostController extends Controller
 
       
         }
+
+    }
 
 
 
