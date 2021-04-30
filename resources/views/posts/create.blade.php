@@ -279,138 +279,29 @@
                         <h3 class="text-lg font-medium leading-6 text-gray-900"><strong>Etapa 3: </strong>Completar
                             tablas</h3>
                         <p class="mt-1 text-sm text-gray-600 pb-3  ">
-                            Aqui podras completar los alquileres y cuanto se factura. El sistema automaticamente calcula
+                            Aqui podras completar los alquileres y cuanto se factura.
+                            <br> El sistema automaticamente calcula
                             el documento.
+                            En esta etapa podes completar los servicios que debe abonar el locatario. En el
+                                        caso de que no deba pagarlo simplemente podes dejarlo sin completar.<br>
+                                        En el caso de que el locatario nesecite un medidor, puede tildar la opcion en la
+                                        columna "debe solicitar" . <br>
+                                        El los servicios "otros1","otros2" y "otros3" son editables para que puedas
+                                        agregar los servicios que desees.
                         </p>
                     </div>
 
                 </div>
-
-
-                <div class="mt-5 md:mt-0 md:col-span-2 pb-6">
+             
                     <div class="shadow overflow-hidden sm:rounded-md">
-                        <div class="bg-gray-50 ">
-                            <div class="grid grid-cols-3 gap-4 p-5">
-                                <div class="pr-3">
-
-
-                                    <table class="pr-3">
-                                        <thead>
-                                            <tr class="bg-gray-500 ">
-                                                <th class="border border-gray-800">Meses</th>
-                                                <th class="border border-gray-800 w-36">Alquiler</th>
-                                                <th class="border border-gray-800 w-36">Facturacion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @for ($i = 1; $i <= $cantidad_de_meses; $i++)
-
-                                                <?php if ($i > 12) {
-                                                break;
-                                                } ?>
-                                                <tr>
-                                                    <td class="border border-gray-800 bg-gray-300"><input type="number"
-                                                            name="{{ 'meses' . $i }}" value="{{ old('meses' . $i) }}" class="w-16 h-8 bg-gray-300">
-                                                    </td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'alquiler' . $i }}" value="{{ old('alquiler' . $i) }}" type="number"
-                                                            class="w-36 h-8 text-center"></td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'facturacion' . $i }}" value="{{ old('facturacion' . $i) }}" type="number"
-                                                            class="w-36 h-8 text-center"></td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-
+                        <div class="bg-gray-50  flex flex-wrap content-start ">
+                          
+                                <div class="px-5">
+                                    <div class="col-span-3">
+                                    @livewire('form-create') 
+                                    </div> 
+                                    
                                 </div>
-
-                                <?php if ($cantidad_de_meses > 12) { ?>
-
-                                <div class="pr-3">
-                                    <table class="pr-3">
-                                        <thead>
-                                            <tr class="bg-gray-500 ">
-                                                <th class="border border-gray-800">Mes</th>
-                                                <th class="border border-gray-800 w-36">Alquiler</th>
-                                                <th class="border border-gray-800 w-36">Facturacion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @for ($i = 13; $i <= $cantidad_de_meses; $i++)
-
-                                                <?php if ($i > 24) {
-                                                break;
-                                                } ?>
-                                                <tr>
-                                                    <td class="border border-gray-800 bg-gray-300"><input type="number" value="{{ old('meses' . $i) }}"
-                                                            name="{{ 'meses' . $i }}" class="w-16 h-8 bg-gray-300">
-                                                    </td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'alquiler' . $i }}" type="number" value="{{ old('alquiler' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'facturacion' . $i }}" type="number" value="{{ old('facturacion' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <?php } ?>
-
-                                <?php if ($cantidad_de_meses > 24) { ?>
-
-
-                                <div class="pr-3">
-                                    <table class="pr-3">
-                                        <thead>
-                                            <tr class="bg-gray-500 ">
-                                                <th class="border border-gray-800">Mes</th>
-                                                <th class="border border-gray-800 w-36">Alquiler</th>
-                                                <th class="border border-gray-800 w-36">Facturacion</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            @for ($i = 25; $i <= $cantidad_de_meses; $i++)
-
-                                                <?php if ($i > 36) {
-                                                break;
-                                                } ?>
-                                                <tr>
-                                                    <td class="border border-gray-800 bg-gray-300"><input type="number" value="{{ old('meses' . $i) }}"
-                                                            name="{{ 'meses' . $i }}" class="w-16 h-8 bg-gray-300">
-                                                    </td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'alquiler' . $i }}" type="number" value="{{ old('alquiler' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                    <td class="border border-gray-800"><input
-                                                            name="{{ 'facturacion' . $i }}" type="number" value="{{ old('facturacion' . $i) }}"
-                                                            class="w-36 h-8 text-center"></td>
-                                                </tr>
-                                            @endfor
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <?php } ?>
-
-                                <div class="pr-3 col-span-1 border-gray-700 border-l pl-2 ">
-                                    <p>
-                                        En esta etapa podes completar los servicios que debe abonar el locatario. En el
-                                        caso de que no deba pagarlo simplemente podes dejarlo sin completar.<br><br>
-                                        En el caso de que el locatario nesecite un medidor, puede tildar la opcion en la
-                                        columna "debe solicitar" . <br><br>
-                                        El los servicios "otros1","otros2" y "otros3" son editables para que puedas
-                                        agregar los servicios que desees.
-                                    </p>
-
-                                </div>
-
 
 
                                 <div class="col-span-3" aria-hidden="true">
@@ -421,7 +312,7 @@
 
 
 
-                                <div class="pr-3 col-span-1 justify-self-center">
+                                <div class="pr-3 justify-self-center">
 
 
                                     <table class="pr-3">
@@ -564,7 +455,7 @@
 
                                 </div>
 
-                                <div class="pr-3 col-span-1 justify-self-center border-gray-700 border-l pl-2">
+                                <div class="pr-3 justify-self-center border-gray-700 border-l pl-2">
 
 
                                     <table class="pr-3">
@@ -614,22 +505,11 @@
 
 
 
-                                <div class="pr-3 col-span-1 border-gray-700 border-l pl-2 ">
-                                    <p>
-                                        En esta etapa podes completar los servicios que debe abonar el locatario. En el
-                                        caso de que no deba pagarlo simplemente podes dejarlo sin completar.<br><br>
-                                        En el caso de que el locatario nesecite un medidor, puede tildar la opcion en la
-                                        columna "debe solicitar" . <br><br>
-                                        El los servicios "otros1","otros2" y "otros3" son editables para que puedas
-                                        agregar los servicios que desees.
-                                    </p>
-
-                                </div>
-                            </div>
+            
+                         
                         </div>
                     </div>
-                </div>
-
+            
                 <div class="px-4 py-3 bg-gray-800 text-right sm:px-6">
                     <button type="submit"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

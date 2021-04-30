@@ -127,15 +127,13 @@ for ($i = 0; $i <= $cantidad_de_elementos_del_objeto - 1; $i++) { $contador2=$co
                             $incremento=(($alquiler[$i]/$alquiler[$i-1])-1)*100;
                         
                         }
-                     
-                        
+                                            
 
                         // ------------ contadores---------------------------//
                         $suma_facturacion = $suma_facturacion + $facturacion[$i];
                         $suma_iva = $suma_iva + $iva[$i];
                         $suma_documento = $suma_documento + $documento[$i];
                         $suma_total_sin_iva = $suma_total_sin_iva + $alquiler[$i];
-
                         //-----------------------------------------------------------//
                         ?>
 
