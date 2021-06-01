@@ -29,13 +29,7 @@
                         <div class="shadow overflow-hidden sm:rounded-md">
                             <div class="px-4 py-5 bg-gray-50 sm:p-6">
                                 <div class="grid grid-cols-6 gap-6">
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="cantidad_de_meses"
-                                            class="block text-sm font-medium text-gray-700">Cantidad de meses</label>
-                                        <input type="text" name="cantidad_de_meses" id="cantidad_de_meses"
-                                            value="{{ $cantidad_de_meses }}"
-                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                                    </div>
+                                   
 
                                     <div class="col-span-6 sm:col-span-3">
                                         <label for="fecha_estimada_de_firma"
@@ -248,7 +242,7 @@
                                         name="fecha_estimada_de_firma">
                                     <input type="hidden" value="{{ $vigencia_de_contrato }}"
                                         name="vigencia_de_contrato">
-                                    <input type="hidden" value="{{ $cantidad_de_meses }}" name="cantidad_de_meses">
+                                
 
 
 
@@ -294,28 +288,16 @@
                 </div>
              
                     <div class="shadow overflow-hidden sm:rounded-md">
-                        <div class="bg-gray-50  flex flex-wrap content-start ">
+                        <div class="bg-gray-50  flex flex-wrap content-center ">
                           
-                                <div class="px-5">
-                                    <div class="col-span-3">
-                                    @livewire('form-create') 
-                                    </div> 
+                                
+
+
+                                <div class="p-8 m-3 border border-gray-400">
                                     
-                                </div>
 
 
-                                <div class="col-span-3" aria-hidden="true">
-                                    <div class="py-5">
-                                        <div class="border-t border-gray-500"></div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="pr-3 justify-self-center">
-
-
-                                    <table class="pr-3">
+                                    <table>
                                         <thead>
                                             <tr class="bg-gray-500 ">
                                                 <th class="border border-gray-800 w-44">Servicios</th>
@@ -455,7 +437,7 @@
 
                                 </div>
 
-                                <div class="pr-3 justify-self-center border-gray-700 border-l pl-2">
+                                <div class="p-8 m-3 border border-gray-400">
 
 
                                     <table class="pr-3">
@@ -501,6 +483,14 @@
                                         </tbody>
                                     </table>
 
+                                </div>
+
+
+                                <div class="p-8 m-3 border border-gray-400">
+                                    <div class="col-span-3">
+                                    @livewire('form-create') 
+                                    </div> 
+                                    
                                 </div>
 
 

@@ -35,24 +35,29 @@
                 <th class="border border-gray-800">Meses</th>
                 <th class="border border-gray-800 w-36">Alquiler</th>
                 <th class="border border-gray-800 w-36">Facturacion</th>
-                <th class="border border-gray-800 w-36">Facturacion</th>
-                <th class="border border-gray-800 w-36">Facturacion</th>
+             
+           
             </tr>
         </thead>
         <tbody>
 
             @for ($i = 1; $i <= $cantidad_de_meses; $i++)
 
+      
+
                 <tr>
                     <td class="border border-gray-800 bg-gray-300"><input wire:model="{{ 'meses' . $i }}" type="number"
                             name="{{ 'meses' . $i }}" value="{{ old('meses' . $i) }}" class="w-16 h-8 bg-gray-300">
-                    </td>
-                    <td class="border border-gray-800"><input
+                    </td>                
+                    <td class="border border-gray-800"><input 
                             name="{{ 'alquiler' . $i }}" value="{{ old('alquiler' . $i) }}" type="number"
                             class="w-36 h-8 text-center"></td>
-                    <td class="border border-gray-800"><input
+                    <td class="border border-gray-800"><input 
                             name="{{ 'facturacion' . $i }}" value="{{ old('facturacion' . $i) }}" type="number"
                             class="w-36 h-8 text-center"></td>
+
+                   
+                            
                 </tr>
             @endfor
         </tbody>
